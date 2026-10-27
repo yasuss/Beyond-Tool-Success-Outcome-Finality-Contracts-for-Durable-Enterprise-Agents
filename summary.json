@@ -1,0 +1,67 @@
+{
+  "schema": "EFFECT_OUTCOME_EXPERIMENT_v1",
+  "deterministic": true,
+  "effect_retry_summary": {
+    "BLIND_RETRY": {
+      "cases": 16,
+      "duplicate_effect_cases": 12,
+      "manual_review_cases": 0,
+      "resolved_cases": 0,
+      "max_effect_count": 3
+    },
+    "IDEMPOTENCY_ONLY": {
+      "cases": 16,
+      "duplicate_effect_cases": 6,
+      "manual_review_cases": 0,
+      "resolved_cases": 0,
+      "max_effect_count": 3
+    },
+    "RECONCILE_FIRST": {
+      "cases": 16,
+      "duplicate_effect_cases": 0,
+      "manual_review_cases": 4,
+      "resolved_cases": 12,
+      "max_effect_count": 1
+    }
+  },
+  "completion_summary": {
+    "BUSINESS_POSTCONDITION_COMPLETION": {
+      "cases": 8,
+      "false_positive_cases": 0,
+      "false_negative_cases": 0,
+      "correct_cases": 8
+    },
+    "CORRECTION_ONLY_COMPLETION": {
+      "cases": 8,
+      "false_positive_cases": 2,
+      "false_negative_cases": 0,
+      "correct_cases": 6
+    },
+    "EFFECT_CONFIRMED_COMPLETION": {
+      "cases": 8,
+      "false_positive_cases": 3,
+      "false_negative_cases": 1,
+      "correct_cases": 4
+    }
+  },
+  "design": {
+    "effect_retry_dimensions": [
+      "initial_applied",
+      "idempotency_support",
+      "readback_support",
+      "duplicate_dispatch"
+    ],
+    "completion_dimensions": [
+      "effect_confirmed",
+      "correction_observed",
+      "erp_reconciled"
+    ],
+    "effect_retry_cases": 16,
+    "completion_cases": 8
+  },
+  "limitations": [
+    "Executable semantic model only; no SAP, portal, email-provider, or production connector behavior is measured.",
+    "Read-after-write is modeled as authoritative when available; stale/eventually-consistent reads require connector-specific handling beyond this study.",
+    "No latency, cost, or human-factors claims are made."
+  ]
+}
